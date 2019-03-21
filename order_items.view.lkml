@@ -91,8 +91,7 @@ view: order_items {
   }
 
   measure: count {
-    type: count_distinct
-    sql: ${id} ;;
+    type: count
   }
 
   #------ Maire's Case Study Part 0 Metrics -------#
