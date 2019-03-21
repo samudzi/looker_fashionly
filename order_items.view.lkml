@@ -178,7 +178,7 @@ view: order_items {
   measure: customer_return_percent {
     type: number
     sql: ${count_of_customers_with_returns}/${total_user_count} ;;
-    value_format:"#.00%"
+    #value_format:"#.00%"
   }
 
   measure: average_spend_per_customer {
