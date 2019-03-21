@@ -170,10 +170,15 @@ view: order_items {
     }
   }
 
+  measure: total_user_count {
+    type: count_distinct
+    sql: ${user_id} ;;
+  }
+
   measure: customer_return_percent {
     type: number
-    sql: ${count_of_customers_with_returns}/${users.count} ;;
-    value_format: "#.00%"
+    sql: ${count_of_customers_with_returns}/${total_user_count} ;;
+    value_format:"#.00%"
   }
 
   measure: average_spend_per_customer {
