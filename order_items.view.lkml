@@ -156,7 +156,7 @@ view: order_items {
 
   measure: item_return_rate {
     type: number
-    sql: (${number_of_returns})/${count} ;;
+    sql: (1.0*${number_of_returns})/${count} ;;
     value_format: "#.00%"
   }
 
