@@ -154,6 +154,7 @@ view: order_items {
       }
     }
 
+#need to cast integer values as floats in order to deliver decimal results
   measure: item_return_rate {
     type: number
     sql: (1.0*${number_of_returns})/${count} ;;
@@ -174,9 +175,11 @@ view: order_items {
     sql: ${user_id} ;;
   }
 
+#need to cast integer values as floats in order to deliver decimal results
+
   measure: customer_return_percent {
     type: number
-    sql: ${count_of_customers_with_returns}/${total_user_count} ;;
+    sql: 1.0*${count_of_customers_with_returns}/${total_user_count} ;;
     value_format:"#.00%"
   }
 
