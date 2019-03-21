@@ -149,6 +149,7 @@ view: order_items {
 
   measure: number_of_returns {
     type: count_distinct
+    sql: ${status} ;;
     filters: {
       field: status
       value: "Returned"
