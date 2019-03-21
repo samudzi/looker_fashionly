@@ -156,7 +156,7 @@ view: order_items {
 
   measure: item_return_rate {
     type: number
-    sql: SELECT ${number_of_returns}/${count} from ${TABLE} ;;
+    sql: SELECT (select count(${id} from ${TABLE} where ${status} = 'Returned')/${count} from ${TABLE} ;;
     value_format: "#.00%"
   }
 
