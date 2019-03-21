@@ -147,17 +147,16 @@ view: order_items {
   }
 
   measure: number_of_returns {
-    type: sum
+    type: count
     filters: {
       field: status
       value: "Returned"
       }
-    sql: ${status} ;;
     }
 
   measure: item_return_rate {
     type: number
-    sql: ${number_of_returns}/${count} ;;
+    sql: SELECT ${number_of_returns}/${count} from ${TABLE} ;;
     value_format: "#.00%"
   }
 
