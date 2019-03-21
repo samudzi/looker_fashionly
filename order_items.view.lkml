@@ -118,7 +118,7 @@ view: order_items {
     sql: ${sale_price} ;;
     filters: {
       field: status
-      value: "Completed"
+      value: "Complete"
     }
     value_format:"$#.00;($#.00)"
   }
@@ -126,11 +126,12 @@ view: order_items {
   measure: total_gross_margin {
     type: number
     sql: ${total_gross_revenue} - ${inventory_items.total_cost} ;;
+    value_format:"$#.00;($#.00)"
   }
 
   measure: average_gross_margin {
     type: number
-    sql: ;;
+    sql: AVG(${total_gross_margin});;
   }
 
   # ----- Sets of fields for drilling ------
