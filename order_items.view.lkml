@@ -157,7 +157,6 @@ view: order_items {
   measure: item_return_rate {
     type: number
     sql: (${number_of_returns}/${count})*100 ;;
-    value_format: "#%"
   }
 
   measure: count_of_customers_with_returns {
