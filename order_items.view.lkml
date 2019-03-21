@@ -163,7 +163,7 @@ view: order_items {
 
   measure: count_of_customers_with_returns {
     type: count_distinct
-    sql:  ${users.id};;
+    sql:  ${user_id};;
     filters: {
       field: status
       value: "Returned"
