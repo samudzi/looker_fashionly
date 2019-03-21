@@ -112,17 +112,17 @@ view: order_items {
 
   measure: total_gross_revenue {
     type: sum
-    sql: SELECT ${sale_price} FROM ${TABLE} WHERE ${status} LIKE 'Complete' ;;
+    sql: (SELECT ${sale_price} FROM ${TABLE} WHERE ${status} LIKE 'Complete') ;;
   }
 
   measure: total_gross_margin {
     type: number
-    sql: ${total_gross_revenue} - ${inventory_items.total_cost} ;;
+    sql: (SELECT ${sale_price} FROM ${TABLE} WHERE ${status} LIKE 'Complete') - ${inventory_items.total_cost} ;;
   }
 
   measure: average_gross_margin {
     type: number
-    sql: SELECT AVG(${total_gross_margin} FROM ${TABLE};;
+    sql: AVG((SELECT ${sale_price} FROM ${TABLE} WHERE ${status} LIKE 'Complete') - ${inventory_items.total_cost});;
   }
 
   # ----- Sets of fields for drilling ------
