@@ -122,7 +122,7 @@ view: order_items {
 
   measure: average_gross_margin {
     type: number
-    sql: SELECT AVERAGE(${total_gross_margin} FROM ${TABLE};;
+    sql: SELECT AVG(${total_gross_margin} FROM ${TABLE};;
   }
 
   # ----- Sets of fields for drilling ------
