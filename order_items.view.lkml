@@ -98,31 +98,39 @@ view: order_items {
   measure: total_sale_price {
     type: sum
     sql: ${sale_price} ;;
+    value_format:"$#.00;($#.00)"
   }
 
   measure: average_sale_price {
     type: average
     sql: ${sale_price} ;;
+    value_format:"$#.00;($#.00)"
   }
 
   measure: cumulative_total_sales {
     type: running_total
     sql: ${sale_price} ;;
+    value_format:"$#.00;($#.00)"
   }
 
   measure: total_gross_revenue {
     type: sum
-    sql: (SELECT ${sale_price} FROM ${TABLE} WHERE ${status} LIKE 'Complete') ;;
+    sql: ${sale_price} ;;
+    filters: {
+      field: status
+      value: "Completed"
+    }
+    value_format:"$#.00;($#.00)"
   }
 
   measure: total_gross_margin {
     type: number
-    sql: (SELECT ${sale_price} FROM ${TABLE} WHERE ${status} LIKE 'Complete') - ${inventory_items.total_cost} ;;
+    sql: ${total_gross_revenue} - ${inventory_items.total_cost} ;;
   }
 
   measure: average_gross_margin {
     type: number
-    sql: AVG((SELECT ${sale_price} FROM ${TABLE} WHERE ${status} LIKE 'Complete') - ${inventory_items.total_cost});;
+    sql: ;;
   }
 
   # ----- Sets of fields for drilling ------
