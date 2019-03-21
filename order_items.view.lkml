@@ -95,6 +95,8 @@ view: order_items {
     drill_fields: [detail*]
   }
 
+  #------ Maire's Case Study Part 0 Metrics -------#
+
   measure: total_sale_price {
     type: sum
     sql: ${sale_price} ;;
@@ -138,6 +140,48 @@ view: order_items {
       value: "Complete"
     }
   }
+
+  measure: gross_margin_percent {
+    type: number
+    sql: ${total_gross_margin}/${total_gross_revenue} ;;
+    value_format: "#.00%"
+  }
+
+  measure: number_of_returns {
+    type: count_distinct
+    sql: ${sale_price} ;;
+    filters: {
+      field: status
+      value: "Returned"
+      }
+    }
+
+  measure: item_return_rate {
+    type: number
+    sql: ${number_of_returns}/${count} ;;
+  }
+
+  measure: count_of_customers_with_returns {
+    type: count_distinct
+    sql:  ${users.id};;
+    filters: {
+      field: status
+      value: "Returned"
+    }
+  }
+
+  measure: customer_return_percent {
+    type: number
+    sql: ${count_of_customers_with_returns}/${users.count} ;;
+    value_format: "#.00%"
+  }
+
+  measure: average_spend_per_customer {
+    type: number
+    sql: ${total_sale_price}/${users.count} ;;
+    value_format:"$#.00;($#.00)"
+  }
+
 
   # ----- Sets of fields for drilling ------
   set: detail {
