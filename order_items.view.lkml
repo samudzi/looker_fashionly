@@ -131,7 +131,8 @@ view: order_items {
 
   measure: average_gross_margin {
     type: number
-    sql: AVG(${total_gross_margin});;
+    sql: ${total_gross_revenue} - ${inventory_items.total_cost} ;;
+    value_format:"$#.00;($#.00)"
   }
 
   # ----- Sets of fields for drilling ------
