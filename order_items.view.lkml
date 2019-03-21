@@ -91,8 +91,8 @@ view: order_items {
   }
 
   measure: count {
-    type: count
-    drill_fields: [detail*]
+    type: count_distinct
+    sql: ${id} ;;
   }
 
   #------ Maire's Case Study Part 0 Metrics -------#
