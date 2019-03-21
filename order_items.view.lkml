@@ -149,7 +149,7 @@ view: order_items {
 
   measure: number_of_returns {
     type: count_distinct
-    sql: ${sale_price} ;;
+    sql: ${user_id} ;;
     filters: {
       field: status
       value: "Returned"
@@ -158,7 +158,7 @@ view: order_items {
 
   measure: item_return_rate {
     type: number
-    sql: ${number_of_returns} / ${count} ;;
+    sql: ${number_of_returns}/${count} ;;
     value_format: "#.00%"
   }
 
@@ -178,7 +178,7 @@ view: order_items {
 
   measure: customer_return_percent {
     type: number
-    sql: ${count_of_customers_with_returns}+${total_user_count} ;;
+    sql: ${count_of_customers_with_returns}/${total_user_count} ;;
     value_format:"#.00%"
   }
 
