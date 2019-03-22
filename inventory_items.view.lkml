@@ -91,6 +91,15 @@ view: inventory_items {
     sql: ${cost} ;;
   }
 
+  measure: total_cost_past_month {
+    type: sum
+    sql: ${cost} ;;
+    filters:  {
+      field: created_date
+      value: "last 30 days"
+    }
+  }
+
   measure: average_cost {
     type: average
     sql: ${cost} ;;

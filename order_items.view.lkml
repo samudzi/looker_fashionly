@@ -205,7 +205,27 @@ view: order_items {
     value_format:"$#.00;($#.00)"
   }
 
+  measure: total_gross_revenue_past_month {
+    type: sum
+    sql: ${sale_price} ;;
+    filters: {
+      field: created_date
+      value: "30 days ago"
+    }
+    value_format:"$#.00;($#.00)"
+  }
 
+  measure: total_gross_margin_past_month {
+    type: number
+    sql: ${total_gross_revenue_past_month} - ${inventory_items.total_cost_past_month} ;;
+    value_format:"$#.00;($#.00)"
+  }
+
+  measure: gross_margin_percent_past_month {
+    type: number
+    sql: ${total_gross_margin}/${total_gross_revenue_past_month} ;;
+    value_format: "#.00%"
+  }
 
   # ----- Sets of fields for drilling ------
   set: detail {
