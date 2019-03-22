@@ -223,7 +223,7 @@ view: order_items {
 
   measure: gross_margin_percent_past_month {
     type: number
-    sql: ${total_gross_margin}/${total_gross_revenue_past_month} ;;
+    sql: ${total_gross_margin_past_month}/${total_gross_revenue_past_month} ;;
     value_format: "#.00%"
   }
 
