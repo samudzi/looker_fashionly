@@ -210,7 +210,21 @@ view: order_items {
     sql: ${sale_price} ;;
     filters: {
       field: created_date
-      value: "30 days ago"
+      value: "last 30 days"
+    }
+    filters: {
+      field: status
+      value: "Complete"
+    }
+    value_format:"$#.00;($#.00)"
+  }
+
+  measure: total_revenue_past_month {
+    type: sum
+    sql: ${sale_price} ;;
+    filters: {
+      field: created_date
+      value: "last 30 days"
     }
     value_format:"$#.00;($#.00)"
   }
@@ -225,6 +239,12 @@ view: order_items {
     type: number
     sql: ${total_gross_margin_past_month}/${total_gross_revenue_past_month} ;;
     value_format: "#.00%"
+  }
+
+  measure: average_spend_per_customer_past_month {
+    type: number
+    sql: ${total_revenue_past_month}/${users.count} ;;
+    value_format:"$#.00;($#.00)"
   }
 
   # ----- Sets of fields for drilling ------
