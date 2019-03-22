@@ -189,6 +189,22 @@ view: order_items {
     value_format:"$#.00;($#.00)"
   }
 
+#---- Maire's Case Study Part 2 Metrics ----
+# Total Revenue Yesterday
+#Total Number of New Users Yesterday
+#Gross Margin % over the Past 30 Days
+#Average Spend per Customer over the Past 30 Days
+
+  measure: total_revenue_yesterday  {
+    type: sum
+    sql: ${sale_price} ;;
+    filters: {
+      field: created_date
+      value: "1 day"
+    }
+    value_format:"$#.00;($#.00)"
+  }
+
 
   # ----- Sets of fields for drilling ------
   set: detail {
