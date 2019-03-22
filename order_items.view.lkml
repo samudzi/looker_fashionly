@@ -200,7 +200,7 @@ view: order_items {
     sql: ${sale_price} ;;
     filters: {
       field: created_date
-      value: "1 day"
+      value: "2 days"
     }
     value_format:"$#.00;($#.00)"
   }
