@@ -86,4 +86,13 @@ view: users {
     type: count
     drill_fields: [id, first_name, last_name, events.count, order_items.count]
   }
+
+  measure: total_number_new_users_yesterday {
+    type: sum
+    sql: ${id} ;;
+    filters: {
+      field: created_date
+      value: "yesterday"
+    }
+  }
 }

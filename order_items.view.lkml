@@ -200,10 +200,11 @@ view: order_items {
     sql: ${sale_price} ;;
     filters: {
       field: created_date
-      value: "2 days"
+      value: "yesterday"
     }
     value_format:"$#.00;($#.00)"
   }
+
 
 
   # ----- Sets of fields for drilling ------
