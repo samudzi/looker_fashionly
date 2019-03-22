@@ -88,7 +88,7 @@ view: users {
   }
 
   measure: total_number_new_users_yesterday {
-    type: sum_distinct
+    type: count_distinct
     sql: ${id} ;;
     filters: {
       field: created_date
