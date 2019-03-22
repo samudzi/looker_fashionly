@@ -10,34 +10,6 @@ datagroup: samudzi_sandbox_default_datagroup {
 
 persist_with: samudzi_sandbox_default_datagroup
 
-explore: bsandell {}
-
-explore: company_list {}
-
-explore: distribution_centers {}
-
-explore: events {
-  join: users {
-    type: left_outer
-    sql_on: ${events.user_id} = ${users.id} ;;
-    relationship: many_to_one
-  }
-}
-
-explore: inventory_items {
-  join: products {
-    type: left_outer
-    sql_on: ${inventory_items.product_id} = ${products.id} ;;
-    relationship: many_to_one
-  }
-
-  join: distribution_centers {
-    type: left_outer
-    sql_on: ${products.distribution_center_id} = ${distribution_centers.id} ;;
-    relationship: many_to_one
-  }
-}
-
 explore: order_items {
   join: users {
     type: left_outer
@@ -64,12 +36,5 @@ explore: order_items {
   }
 }
 
-explore: products {
-  join: distribution_centers {
-    type: left_outer
-    sql_on: ${products.distribution_center_id} = ${distribution_centers.id} ;;
-    relationship: many_to_one
-  }
-}
 
 explore: users {}
