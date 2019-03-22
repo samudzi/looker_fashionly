@@ -37,4 +37,6 @@ explore: order_items {
 }
 
 
-explore: users {}
+explore: customers {
+  view_name: users
+}
