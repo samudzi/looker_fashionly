@@ -187,6 +187,7 @@ view: order_items {
     type: number
     sql: ${total_sale_price}/${users.count} ;;
     value_format:"$#.00;($#.00)"
+    drill_fields: [users.gender,users.age_buckets]
   }
 
 #---- Maire's Case Study Part 2 Metrics ----
