@@ -37,11 +37,9 @@ view: users {
     sql: ${TABLE}.created_at ;;
   }
 
-  dimension_group: created_groups {
-    type: duration
-    intervals: [day]
-    sql_start: ${TABLE}.created_at ;;
-    sql_end: CURRENT_TIMESTAMP();;
+  dimension: user_lessthan_90_days {
+    type: yesno
+    sql: DATEPART(DAY, CURRENT_TIMESTAMP) - DATEPART(DAY, ${created_date}) =< 90 ;;
   }
 
   dimension: age_buckets {
