@@ -229,6 +229,16 @@ view: order_items {
     value_format:"$#.00;($#.00)"
   }
 
+  measure: total_revenue_per_day_past_90_days {
+    type: sum
+    sql: ${sale_price}/90 ;;
+    filters: {
+      field: created_date
+      value: "last 90 days"
+    }
+    value_format:"$#.00;($#.00)"
+  }
+
   measure: total_gross_margin_past_month {
     type: number
     sql: ${total_gross_revenue_past_month} - ${inventory_items.total_cost_past_month} ;;
