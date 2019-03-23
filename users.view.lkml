@@ -39,7 +39,7 @@ view: users {
 
   dimension: user_lessthan_90_days {
     type: yesno
-    sql: DATEPART(DAY, CURRENT_TIMESTAMP) - DATEPART(DAY, ${created_date}) <= 90 ;;
+    sql: DATEPART(DAY, ${created_date})-DATEPART(DAY, CURRENT_TIMESTAMP) <= 90 ;;
   }
 
   dimension: age_buckets {
