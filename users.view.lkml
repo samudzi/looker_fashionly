@@ -88,6 +88,7 @@ view: users {
   dimension: traffic_source {
     type: string
     sql: ${TABLE}.traffic_source ;;
+    drill_fields: [users.user_lessthan_90_days]
   }
 
   dimension: zip {
