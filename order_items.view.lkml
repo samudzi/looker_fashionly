@@ -128,6 +128,7 @@ view: order_items {
     type: number
     sql: ${total_gross_revenue} - ${inventory_items.total_cost} ;;
     value_format:"$#.00;($#.00)"
+    drill_fields: [products.brand,products.category]
   }
 
   measure: average_gross_margin {
