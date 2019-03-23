@@ -37,6 +37,13 @@ view: users {
     sql: ${TABLE}.created_at ;;
   }
 
+  dimension_group: created_groups {
+    type: duration
+    intervals: [day]
+    sql_start: ${TABLE}.created_at ;;
+    sql_end: CURRENT_TIMESTAMP();;
+  }
+
   dimension: age_buckets {
     type: tier
     tiers: [15,26,36,51,66]
