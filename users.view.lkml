@@ -85,7 +85,7 @@ view: users {
   #Month-to-date Dimension
   dimension: is_before_mtd {
     type: yesno
-    sql: |
+    sql:
           (EXTRACT(DAY FROM ${TABLE}.created_at) < EXTRACT(DAY FROM GETDATE())
           OR
           (
