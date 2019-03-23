@@ -37,6 +37,14 @@ view: users {
     sql: ${TABLE}.created_at ;;
   }
 
+  dimension: age_buckets {
+    type: tier
+    tiers: [15,26,36,51,66]
+    style: integer
+    sql: ${age} ;;
+  }
+
+
   dimension: email {
     type: string
     sql: ${TABLE}.email ;;
