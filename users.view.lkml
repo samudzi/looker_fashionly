@@ -82,6 +82,26 @@ view: users {
     sql: ${TABLE}.zip ;;
   }
 
+  #Month-to-date Dimension
+  dimension: is_before_mtd {
+    type: yesno
+    sql: |
+          (EXTRACT(DAY FROM ${TABLE}.created_at) < EXTRACT(DAY FROM GETDATE())
+          OR
+          (
+          EXTRACT(DAY FROM ${TABLE}.created_at) = EXTRACT(DAY FROM GETDATE()) AND
+          EXTRACT(HOUR FROM ${TABLE}.created_at) < EXTRACT(HOUR FROM GETDATE())
+          )
+          OR
+          (
+          EXTRACT(DAY FROM ${TABLE}.created_at) = EXTRACT(DAY FROM GETDATE()) AND
+          EXTRACT(HOUR FROM ${TABLE}.created_at) <= EXTRACT(HOUR FROM GETDATE()) AND
+          EXTRACT(MINUTE FROM ${TABLE}.created_at) < EXTRACT(MINUTE FROM GETDATE())
+          )
+          );;
+
+    }
+
   measure: count {
     type: count
     drill_fields: [id, first_name, last_name, events.count, order_items.count]
