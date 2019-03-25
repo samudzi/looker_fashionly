@@ -279,6 +279,18 @@ view: order_items {
 
   }
 
+  # Including Brand info
+
+  measure: brand_percent_of_total_margin {
+    type: percent_of_total
+    sql: ${total_gross_margin};;
+  }
+
+  measure: brand_percent_of_total_revenue {
+    type: percent_of_total
+    sql: ${total_gross_revenue};;
+  }
+
 
 
   # ----- Sets of fields for drilling ------
