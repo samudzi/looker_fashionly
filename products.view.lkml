@@ -10,6 +10,15 @@ view: products {
   dimension: brand {
     type: string
     sql: ${TABLE}.brand ;;
+    drill_fields: [category,inventory_items.product_name]
+    link: {
+      label: "Brand Website"
+      url: "https://www.google.com/search?q=%{{value}}%"
+    }
+    link: {
+      label: "Brand Facebook Page"
+      url: "https://www.facebook.com/search/str/{{value}}/keywords_search"
+    }
   }
 
   dimension: category {
