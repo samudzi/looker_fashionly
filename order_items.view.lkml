@@ -291,7 +291,11 @@ view: order_items {
     sql: ${total_gross_revenue};;
   }
 
-
+  measure: percent_of_total_revenue{
+    type: percent_of_total
+    sql: ${total_sale_price} ;;
+    value_format: "0.00\%"
+  }
 
 
 
