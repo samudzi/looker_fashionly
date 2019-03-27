@@ -67,6 +67,13 @@ view: user_orders_detailed {
     drill_fields: [detail*]
   }
 
+  measure: total_lifetime_revenue {
+    type: sum
+    sql: ${lifetime_revenue} ;;
+    drill_fields: [detail*]
+    value_format: "$#,##0.00;($#,##0.00)"
+  }
+
   set: detail {
     fields: [
       user_id,
