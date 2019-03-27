@@ -7,8 +7,8 @@ view: user_orders_detailed {
         user_id
         , COUNT(DISTINCT order_id) AS lifetime_orders
         , SUM(sale_price) AS lifetime_revenue
-        , MIN(NULLIF(created_at,0)) AS first_order
-        , MAX(NULLIF(created_at,0)) AS latest_order
+        , MIN(NULLIF(created_at,0)) AS first_order_date
+        , MAX(NULLIF(created_at,0)) AS latest_order_date
         , COUNT(DISTINCT DATE_TRUNC('month', NULLIF(created_at,0))) AS number_of_distinct_months_with_orders
       FROM ORDER_ITEMS
       GROUP BY user_id;;
@@ -58,6 +58,16 @@ view: user_orders_detailed {
   dimension: lifetime_revenue {
     type: number
     sql: ${TABLE}.lifetime_revenue ;;
+  }
+
+  dimension_group: first_order_date {
+    type: time
+    sql: ${TABLE}.first_order_date ;;
+  }
+
+  dimension_group: latest_order_date {
+    type: time
+    sql: ${TABLE}.latest_order_date ;;
   }
 
 
