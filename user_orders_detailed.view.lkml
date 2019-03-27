@@ -27,12 +27,12 @@ view: user_orders_detailed {
 
   dimension_group: first_order {
     type: time
-    sql: ${TABLE}.first_order ;;
+    sql: ${TABLE}.first_order_date ;;
   }
 
   dimension_group: latest_order {
     type: time
-    sql: ${TABLE}.latest_order ;;
+    sql: ${TABLE}.latest_order_date ;;
   }
 
   dimension: lifetime_orders_tiered {
