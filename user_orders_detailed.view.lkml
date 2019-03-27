@@ -1,4 +1,4 @@
-view: user_orders_derived {
+view: user_orders_detailed {
   derived_table: {
     persist_for: "48 hours"
     distribution_style: even
@@ -12,6 +12,12 @@ view: user_orders_derived {
         , COUNT(DISTINCT DATE_TRUNC('month', NULLIF(created_at,0))) AS number_of_distinct_months_with_orders
       FROM ORDER_ITEMS
       GROUP BY user_id;;
+  }
+
+  dimension: user_id {
+    primary_key: yes
+    type: number
+    sql: ${TABLE}.user_id ;;
   }
 
   dimension: lifetime_orders_tiered {

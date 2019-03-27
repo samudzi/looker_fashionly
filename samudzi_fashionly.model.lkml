@@ -37,6 +37,26 @@ explore: order_items {
 }
 
 
-explore: customers {
-  view_name: users
+explore: user_orders_detailed {
+  join: order_items {
+    sql_on: ${order_items.user_id} = ${user_orders_detailed.user_id} ;;
+    relationship: one_to_many
+    type: left_outer
+  }
+  join: users {
+    fields: [-users.id]
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${users.id} = ${user_orders_detailed.user_id} ;;
+  }
+  join: inventory_items {
+    type: left_outer
+    sql_on: ${order_items.inventory_item_id} = ${inventory_items.id} ;;
+    relationship: many_to_one
+  }
+  join: products {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${inventory_items.product_id} = ${products.id} ;;
+  }
 }
