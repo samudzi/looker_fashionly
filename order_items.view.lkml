@@ -291,6 +291,17 @@ view: order_items {
     sql: ${total_gross_revenue};;
   }
 
+  # ----- Dimensions and Measures for Case Study One -------
+
+  dimension: orders_per_user {
+    type: tier
+    tiers: [1,2,3,6,10]
+    style: integer
+    sql: count(${order_id}) ;;
+  }
+
+
+
 
 
   # ----- Sets of fields for drilling ------
