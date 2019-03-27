@@ -44,7 +44,7 @@ explore: user_orders_detailed {
     type: left_outer
   }
   join: users {
-    fields: [-users.id]
+    #fields: [-users.id]
     type: left_outer
     relationship: one_to_one
     sql_on: ${users.id} = ${user_orders_detailed.user_id} ;;
