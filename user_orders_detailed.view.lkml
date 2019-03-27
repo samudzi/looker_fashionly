@@ -70,6 +70,22 @@ view: user_orders_detailed {
     sql: ${TABLE}.latest_order_date ;;
   }
 
+  dimension: days_since_latest_order{
+    type: duration_day
+    sql_start: ${latest_order_date};;
+    sql_end: CURRENT_DATE;;
+  }
+
+  dimension: is_active {
+    type: yesno
+    sql: ${days_since_latest_order} < 90 ;;
+  }
+
+  dimension: is_repeat_customer {
+    type: yesno
+    sql: ${lifetime_orders} > 1 ;;
+  }
+
 
   measure: total_lifetime_orders {
     type: sum
@@ -97,6 +113,12 @@ view: user_orders_detailed {
     value_format: "$#,##0.00;($#,##0.00)"
   }
 
+  measure: average_days_since_latest_order{
+    type: average
+    sql: ${days_since_latest_order} ;;
+    value_format: "0"
+  }
+
   set: detail {
     fields: [
       user_id,
@@ -107,75 +129,4 @@ view: user_orders_detailed {
       number_of_distinct_months_with_orders
     ]
   }
-
-
-
-
-  # # You can specify the table name if it's different from the view name:
-  # sql_table_name: my_schema_name.tester ;;
-  #
-  # # Define your dimensions and measures here, like this:
-  # dimension: user_id {
-  #   description: "Unique ID for each user that has ordered"
-  #   type: number
-  #   sql: ${TABLE}.user_id ;;
-  # }
-  #
-  # dimension: lifetime_orders {
-  #   description: "The total number of orders for each user"
-  #   type: number
-  #   sql: ${TABLE}.lifetime_orders ;;
-  # }
-  #
-  # dimension_group: most_recent_purchase {
-  #   description: "The date when each user last ordered"
-  #   type: time
-  #   timeframes: [date, week, month, year]
-  #   sql: ${TABLE}.most_recent_purchase_at ;;
-  # }
-  #
-  # measure: total_lifetime_orders {
-  #   description: "Use this for counting lifetime orders across many users"
-  #   type: sum
-  #   sql: ${lifetime_orders} ;;
-  # }
 }
-
-# view: order_items_derived {
-#   # Or, you could make this view a derived table, like this:
-#   derived_table: {
-#     sql: SELECT
-#         user_id as user_id
-#         , COUNT(*) as lifetime_orders
-#         , MAX(orders.created_at) as most_recent_purchase_at
-#       FROM orders
-#       GROUP BY user_id
-#       ;;
-#   }
-#
-#   # Define your dimensions and measures here, like this:
-#   dimension: user_id {
-#     description: "Unique ID for each user that has ordered"
-#     type: number
-#     sql: ${TABLE}.user_id ;;
-#   }
-#
-#   dimension: lifetime_orders {
-#     description: "The total number of orders for each user"
-#     type: number
-#     sql: ${TABLE}.lifetime_orders ;;
-#   }
-#
-#   dimension_group: most_recent_purchase {
-#     description: "The date when each user last ordered"
-#     type: time
-#     timeframes: [date, week, month, year]
-#     sql: ${TABLE}.most_recent_purchase_at ;;
-#   }
-#
-#   measure: total_lifetime_orders {
-#     description: "Use this for counting lifetime orders across many users"
-#     type: sum
-#     sql: ${lifetime_orders} ;;
-#   }
-# }
