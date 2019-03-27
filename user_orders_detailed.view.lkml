@@ -58,6 +58,7 @@ view: user_orders_detailed {
   dimension: lifetime_revenue {
     type: number
     sql: ${TABLE}.lifetime_revenue ;;
+    value_format: "$#.00;($#.00)"
   }
 
   dimension_group: first_order_date {

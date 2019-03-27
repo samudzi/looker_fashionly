@@ -102,6 +102,18 @@ view: users {
     sql: ${TABLE}.zip ;;
   }
 
+  dimension: days_since_signup {
+    type: duration_day
+    sql_start: ${created_date} ;;
+    sql_end: current_date ;;
+  }
+
+  dimension: months_since_signup {
+    type: duration_month
+    sql_start: ${created_date} ;;
+    sql_end: current_date ;;
+  }
+
   #Month-to-date Dimension
   dimension: is_before_mtd {
     type: yesno
@@ -122,6 +134,7 @@ view: users {
 
     }
 
+
   measure: count {
     type: count
     drill_fields: [id, first_name, last_name, events.count, order_items.count]
@@ -134,5 +147,15 @@ view: users {
       field: created_date
       value: "yesterday"
     }
+  }
+
+  measure: average_days_since_signup {
+    type: average
+    sql: ${days_since_signup} ;;
+  }
+
+  measure: average_months_since_signup {
+    type: average
+    sql: ${months_since_signup} ;;
   }
 }
