@@ -20,6 +20,21 @@ view: user_orders_detailed {
     sql: ${TABLE}.user_id ;;
   }
 
+  dimension: lifetime_orders {
+    type: number
+    sql: ${TABLE}.lifetime_orders ;;
+  }
+
+  dimension_group: first_order {
+    type: time
+    sql: ${TABLE}.first_order ;;
+  }
+
+  dimension_group: latest_order {
+    type: time
+    sql: ${TABLE}.latest_order ;;
+  }
+
   dimension: lifetime_orders_tiered {
     type: tier
     tiers: [1,2,3,6,10]
