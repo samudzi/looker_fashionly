@@ -42,6 +42,14 @@ view: user_orders_detailed {
     sql: ${TABLE}.lifetime_orders ;;
   }
 
+  dimension: lifetime_revenue_tiered {
+    type: tier
+    tiers: [0,5,20,50,100,500,1000,10000]
+    style: integer
+    sql: ${lifetime_revenue};;
+    value_format: "$#.00;($#.00)"
+  }
+
   dimension: number_of_distinct_months_with_orders {
     type: number
     sql: ${TABLE}.number_of_distinct_months_with_orders ;;
