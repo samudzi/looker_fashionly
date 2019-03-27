@@ -42,8 +42,33 @@ view: user_orders_detailed {
     sql: ${TABLE}.lifetime_orders ;;
   }
 
+  dimension: number_of_distinct_months_with_orders {
+    type: number
+    sql: ${TABLE}.number_of_distinct_months_with_orders ;;
+  }
+
+  dimension: lifetime_revenue {
+    type: number
+    sql: ${TABLE}.lifetime_revenue ;;
+  }
 
 
+  measure: total_lifetime_orders {
+    type: sum
+    sql: ${lifetime_orders} ;;
+    drill_fields: [detail*]
+  }
+
+  set: detail {
+    fields: [
+      user_id,
+      lifetime_orders,
+      lifetime_revenue,
+      first_order_time,
+      latest_order_time,
+      number_of_distinct_months_with_orders
+    ]
+  }
 
 
 
