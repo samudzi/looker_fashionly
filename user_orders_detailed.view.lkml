@@ -119,13 +119,18 @@ view: user_orders_detailed {
     value_format: "0"
   }
 
-  measure: user_count {
+  measure: active_user_count {
     type: count_distinct
     sql: ${is_active} ;;
     filters: {
       field: is_active
       value: "Yes"
     }
+  }
+
+  measure: count {
+    type: count
+    drill_fields: [detail*]
   }
 
   set: detail {
