@@ -119,6 +119,15 @@ view: user_orders_detailed {
     value_format: "0"
   }
 
+  measure: user_count {
+    type: count_distinct
+    sql: ${is_active} ;;
+    filters: {
+      field: is_active
+      value: "Yes"
+    }
+  }
+
   set: detail {
     fields: [
       user_id,
