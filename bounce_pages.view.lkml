@@ -1,6 +1,6 @@
 view: bounce_pages {
   derived_table: {
-    sql: select e1.session_id,event_type from public.events e1
+    sql: select e1.user_id, e1.session_id,event_type from public.events e1
       join
       (
       select session_id, max(sequence_number) as seqmax
@@ -23,6 +23,12 @@ view: bounce_pages {
   dimension: session_id {
     type: string
     sql: ${TABLE}.session_id ;;
+    primary_key: yes
+  }
+
+  dimension: user_id {
+    type: number
+    sql: ${TABLE}.user_id ;;
   }
 
   dimension: event_type {
