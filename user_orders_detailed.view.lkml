@@ -132,7 +132,7 @@ view: user_orders_detailed {
   measure: percent_users_still_active {
     type: number
     sql: ${active_user_count}/${users.count}*1.0 ;;
-    value_format: "#0.0%"
+    value_format: "#.0%"
   }
 
   measure: count {
