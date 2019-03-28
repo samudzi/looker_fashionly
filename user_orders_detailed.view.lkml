@@ -48,6 +48,7 @@ view: user_orders_detailed {
     style: integer
     sql: ${lifetime_revenue};;
     value_format: "$#.00;($#.00)"
+    drill_fields: [users.traffic_sources]
   }
 
   dimension: number_of_distinct_months_with_orders {
