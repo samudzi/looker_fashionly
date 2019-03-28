@@ -114,6 +114,11 @@ view: events {
     value_format: "#.0"
   }
 
+  measure: average_events_per_session_with_purchase {
+    type: number
+    sql: 1.0*${} ;;
+  }
+
   dimension: made_purchase {
     type: yesno
     sql: ${event_type} = 'Purchase' ;;
