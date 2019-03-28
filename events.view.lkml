@@ -102,4 +102,24 @@ view: events {
     type: count
     drill_fields: [id, users.id, users.first_name, users.last_name]
   }
+
+  measure: count_of_sessions {
+    type: count_distinct
+    sql: ${session_id} ;;
+  }
+
+  dimension: made_purchase {
+    type: yesno
+    sql: ${event_type} = 'Purchase' ;;
+  }
+
+  measure: count_sessions_without_purchase {
+    type: count_distinct
+    sql: ${session_id} ;;
+    filters: {
+      field: made_purchase
+      value: "No"
+    }
+
+  }
 }
