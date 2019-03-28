@@ -101,6 +101,12 @@ view: user_orders_detailed {
     drill_fields: [detail*]
   }
 
+  measure: percent_of_users_who_repeat {
+    type: number
+    sql: 1.0*${is_repeat_customer_count}/${users.count}  ;;
+    value_format: "#.0%"
+  }
+
   measure: total_lifetime_revenue {
     type: sum
     sql: ${lifetime_revenue} ;;
@@ -119,6 +125,14 @@ view: user_orders_detailed {
     type: average
     sql: ${days_since_latest_order} ;;
     value_format: "0"
+  }
+
+  measure: is_repeat_customer_count {
+      type: count
+      filters: {
+        field: is_repeat_customer
+        value: "Yes"
+      }
   }
 
   measure: active_user_count {
