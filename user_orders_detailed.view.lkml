@@ -121,7 +121,7 @@ view: user_orders_detailed {
   }
 
   measure: active_user_count {
-    type: count_distinct
+    type: sum
     sql: ${is_active} ;;
     filters: {
       field: is_active
