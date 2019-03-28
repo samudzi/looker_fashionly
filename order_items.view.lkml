@@ -175,6 +175,7 @@ view: order_items {
       field: status
       value: "Returned"
     }
+    drill_fields: [users.traffic_source]
   }
 
   measure: total_user_count {
@@ -194,7 +195,7 @@ view: order_items {
     type: number
     sql: ${total_sale_price}/${users.count} ;;
     value_format:"$#.00;($#.00)"
-    drill_fields: [users.gender,users.age_buckets]
+    drill_fields: [users.gender,users.age_buckets,users.traffic_source]
   }
 
 #---- Maire's Case Study Part 2 Metrics ----
@@ -235,6 +236,7 @@ view: order_items {
       value: "last 30 days"
     }
     value_format:"$#.00;($#.00)"
+    drill_fields: [users.gender,users.age_buckets,users.traffic_source]
   }
 
   measure: total_revenue_per_day_past_90_days {
@@ -263,6 +265,7 @@ view: order_items {
     type: number
     sql: ${total_revenue_past_month}/${users.count} ;;
     value_format:"$#.00;($#.00)"
+    drill_fields: [users.gender,users.age_buckets,users.traffic_source]
   }
 
   measure: average_delivery_duration_in_days {
