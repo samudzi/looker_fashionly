@@ -43,7 +43,7 @@ view: bounce_pages {
 
   dimension: session_without_purchase {
     type: yesno
-    sql: ${event_type} NOT LIKE "Purchase";;
+    sql: ${event_type} <> "Purchase";;
   }
 
   set: detail {
