@@ -114,12 +114,19 @@ view: events {
   }
 
   measure: count_sessions_without_purchase {
-    type: count_distinct
-    sql: ${session_id} ;;
-    filters: {
-      field: made_purchase
-      value: "No"
-    }
+    type: number
+    sql: ${count_of_sessions} - ${converted_sessions.count} ;;
+  }
 
+  measure: average_sessions_per_user {
+    type: number
+    sql: 1.0*${count_of_sessions}/${users.count} ;;
+    value_format: "#.0"
+  }
+
+  measure: average_sessions_per_user_without_purchase {
+    type: number
+    sql: 1.0*${count_sessions_without_purchase}/${users.count} ;;
+    value_format: "#.0"
   }
 }
