@@ -25,6 +25,12 @@ view: converted_sessions {
     sql: ${TABLE}.user_id ;;
   }
 
+  measure: average_events_per_session_with_purchase {
+    type: number
+    sql: 1.0*${count}/${sessions_count} ;;
+    value_format: "#.0"
+  }
+
   set: detail {
     fields: [session_id, user_id]
   }

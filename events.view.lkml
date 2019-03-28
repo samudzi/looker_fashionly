@@ -114,11 +114,6 @@ view: events {
     value_format: "#.0"
   }
 
-  measure: average_events_per_session_with_purchase {
-    type: number
-    sql: 1.0*${} ;;
-  }
-
   dimension: made_purchase {
     type: yesno
     sql: ${event_type} = 'Purchase' ;;
@@ -126,7 +121,7 @@ view: events {
 
   measure: count_sessions_without_purchase {
     type: number
-    sql: ${count_of_sessions} - ${converted_sessions.count} ;;
+    sql: ${count_of_sessions} - ${converted_sessions.sessions_count} ;;
   }
 
   measure: average_sessions_per_user {
