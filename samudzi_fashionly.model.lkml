@@ -63,7 +63,7 @@ explore: user_orders_detailed {
   join: events {
     type: left_outer
     sql_on: ${users.id} = ${events.user_id} ;;
-    relationship: many_to_many
+    relationship: many_to_one
     required_joins: [users]
   }
 
