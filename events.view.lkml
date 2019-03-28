@@ -108,10 +108,20 @@ view: events {
     sql: ${session_id} ;;
   }
 
+  measure: count_of_events_from_sessions_without_purchase {
+    type: number
+    sql: ${count}-${converted_sessions.count} ;;
+  }
+
   measure: average_events_per_session {
     type: number
     sql: 1.0*${count}/${count_of_sessions} ;;
     value_format: "#.0"
+  }
+
+  measure: average_events_per_session_without_purchase {
+    type: number
+    sql: 1.0*${count_of_events_from_sessions_without_purchase}/${count_sessions_without_purchase} ;;
   }
 
   dimension: made_purchase {
