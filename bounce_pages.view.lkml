@@ -9,6 +9,9 @@ view: bounce_pages {
       ) e2
       on e1.session_id = e2.session_id and e2.seqmax = e1.sequence_number
        ;;
+
+      persist_for: "48 hours"
+      indexes: ["session_id"]
   }
 
   measure: count {
