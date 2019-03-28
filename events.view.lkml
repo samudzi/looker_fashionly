@@ -109,8 +109,11 @@ view: events {
   }
 
   measure: count_of_events_from_sessions_without_purchase {
-    type: number
-    sql: ${count}-${converted_sessions.count} ;;
+    type: count
+    filters: {
+      field: made_purchase
+      value: "No"
+    }
   }
 
   measure: average_events_per_session {
@@ -126,12 +129,16 @@ view: events {
 
   dimension: made_purchase {
     type: yesno
-    sql: ${event_type} = 'Purchase' ;;
+    sql: ${session_id} = ${converted_sessions.session_id} ;;
   }
 
   measure: count_sessions_without_purchase {
-    type: number
-    sql: ${count_of_sessions} - ${converted_sessions.sessions_count} ;;
+    type: count_distinct
+    sql: ${session_id} ;;
+    filters: {
+      field: made_purchase
+      value: "No"
+    }
   }
 
   measure: average_sessions_per_user {
