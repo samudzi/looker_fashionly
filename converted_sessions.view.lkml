@@ -10,6 +10,11 @@ view: converted_sessions {
     drill_fields: [detail*]
   }
 
+  measure: sessions_count {
+    type: count_distinct
+    sql: ${session_id} ;;
+  }
+
   dimension: session_id {
     type: string
     sql: ${TABLE}.session_id ;;
