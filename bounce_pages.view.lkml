@@ -37,16 +37,13 @@ view: bounce_pages {
   }
 
   measure: count_sessions_without_purchase {
-    type: count
-    filters: {
-      field: event_type
-      value: "-Purchase"
-    }
+    type: count_distinct
+    sql: ${session_without_purchase} ;;
   }
 
   dimension: session_without_purchase {
     type: yesno
-    sql: ${event_type} <> "Purchase";;
+    sql: ${event_type} NOT LIKE "Purchase";;
   }
 
   set: detail {
