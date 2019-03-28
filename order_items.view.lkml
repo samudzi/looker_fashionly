@@ -268,7 +268,7 @@ view: order_items {
   measure: average_delivery_duration {
     type: average
     sql: ${time_between_ordered_and_delivered} ;;
-    value_format: "#"
+    value_format: "# days"
   }
 
   #Month-to-date Dimension
