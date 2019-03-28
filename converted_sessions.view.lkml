@@ -21,6 +21,7 @@ view: converted_sessions {
   dimension: session_id {
     type: string
     sql: ${TABLE}.session_id ;;
+    primary_key: yes
   }
 
   dimension: user_id {
