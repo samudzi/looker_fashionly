@@ -3,6 +3,9 @@ view: converted_sessions {
     sql: SELECT e1.session_id, e1.user_id FROM public.events e1
       RIGHT JOIN (select session_id from public.events where event_type LIKE 'Purchase') e2 on e1.session_id=e2.session_id
        ;;
+      indexes: ["session_id"]
+      persist_for: "48 hours"
+      distribution_style: all
   }
 
   measure: count {
