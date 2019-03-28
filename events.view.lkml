@@ -134,14 +134,12 @@ view: events {
 
   dimension: bounce_page {
     type: string
-    sql:  select ${event_type} from ${TABLE} e1
-join
-(
-select ${session_id}, max(${sequence_number}) as seqmax
-from ${TABLE}
-group by ${session_id}
-) e2
-on e1.${session_id} = e2.${session_id} and e2.seqmax = e1.${sequence_number} ;;
+    sql:  ${bounce_pages.event_type} ;;
+  }
+
+  measure: count_of_bounce_pages {
+    type: count_distinct
+    sql: ${bounce_page} ;;
   }
 
   measure: count_sessions_without_purchase {
