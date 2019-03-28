@@ -110,7 +110,7 @@ view: events {
 
   measure: average_events_per_session {
     type: number
-    sql: ${count}/${count_of_sessions} ;;
+    sql: 1.0*${count}/${count_of_sessions} ;;
   }
 
   dimension: made_purchase {
