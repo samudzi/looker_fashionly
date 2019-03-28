@@ -123,11 +123,10 @@ view: user_orders_detailed {
   measure: active_user_count {
     type: count
     #sql: ${is_active} ;;
-    #filters: {
-    #  field: is_active
-    #  value: "Yes"
-    #}
-    drill_fields: [is_active]
+    filters: {
+      field: is_active
+      value: "Yes"
+    }
   }
 
   measure: percent_users_still_active {
