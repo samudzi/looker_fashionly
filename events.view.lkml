@@ -134,7 +134,7 @@ view: events {
 
   dimension: bounce_page {
     type: string
-    sql:  select ${event_type} from ${TABLE} A join (select max(${sequence_number} as SeqMax from ${TABLE} B group by ${session_id}) on B.${session_id} = A.${session_id} ;;
+    sql:  select ${event_type} from ${TABLE} A join (select max(${sequence_number}) as SeqMax from ${TABLE} B group by ${session_id}) on B.${session_id} = A.${session_id} ;;
   }
 
   measure: count_sessions_without_purchase {
