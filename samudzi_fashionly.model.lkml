@@ -59,4 +59,11 @@ explore: user_orders_detailed {
     relationship: one_to_one
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
   }
+
+  join: events {
+    type: left_outer
+    sql_on: ${users.id} = ${events.user_id} ;;
+    relationship: many_to_many
+    required_joins: [users]
+  }
 }

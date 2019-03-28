@@ -272,6 +272,7 @@ view: order_items {
     type: average
     sql: ${time_between_ordered_and_delivered} ;;
     value_format: "#"
+    drill_fields: [users.gender,users.age_buckets,users.traffic_source]
   }
 
   #Month-to-date Dimension
