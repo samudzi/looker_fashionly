@@ -35,6 +35,12 @@ view: order_items {
     sql: ${TABLE}.delivered_at ;;
   }
 
+  dimension: time_between_ordered_and_delivered {
+    type: duration_day
+    sql_start: ${created_date};;
+    sql_end: ${delivered_date};;
+  }
+
   dimension: inventory_item_id {
     type: number
     # hidden: yes
@@ -257,6 +263,11 @@ view: order_items {
     type: number
     sql: ${total_revenue_past_month}/${users.count} ;;
     value_format:"$#.00;($#.00)"
+  }
+
+  measure: average_delivery_duration {
+    type: average
+    sql: ${time_between_ordered_and_delivered} ;;
   }
 
   #Month-to-date Dimension
