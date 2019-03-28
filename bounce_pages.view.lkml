@@ -12,6 +12,7 @@ view: bounce_pages {
 
       persist_for: "48 hours"
       indexes: ["session_id"]
+      distribution_style: all
   }
 
   measure: count {

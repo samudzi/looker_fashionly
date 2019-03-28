@@ -73,4 +73,11 @@ explore: user_orders_detailed {
     relationship: many_to_one
     required_joins: [users]
   }
+
+  join: bounce_pages {
+    type: left_outer
+    sql_on: ${bounce_pages.session_id} = ${events.session_id} ;;
+    required_joins: [events]
+    relationship: one_to_many
+  }
 }
