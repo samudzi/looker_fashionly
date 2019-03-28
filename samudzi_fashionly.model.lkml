@@ -70,7 +70,7 @@ explore: user_orders_detailed {
   join: converted_sessions {
     type: left_outer
     sql_on: ${converted_sessions.user_id} = ${users.id} ;;
-    relationship: many_to_many
+    relationship: many_to_one
     required_joins: [users]
   }
 }
