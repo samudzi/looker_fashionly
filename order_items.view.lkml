@@ -319,6 +319,11 @@ view: order_items {
     value_format: "0.00\%"
   }
 
+  measure: percent_of_total_sales_volume {
+    type: percent_of_total
+    sql: ${count} ;;
+  }
+
 
 
   # ----- Sets of fields for drilling ------
