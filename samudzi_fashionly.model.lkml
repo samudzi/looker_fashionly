@@ -49,6 +49,14 @@ explore: user_orders_detailed {
     relationship: one_to_many
     type: left_outer
   }
+
+  join: order_patterns {
+    type: left_outer
+    sql_on: ${order_items.id}=${order_patterns.order_id} ;;
+    relationship: one_to_one
+    required_joins: [order_items]
+  }
+
   join: users {
     #fields: [-users.id]
     type: left_outer
