@@ -108,24 +108,12 @@ view: events {
     sql: ${session_id} ;;
   }
 
-  measure: count_of_events_from_sessions_without_purchase {
-    type: count
-    filters: {
-      field: made_purchase
-      value: "No"
-    }
-  }
-
   measure: average_events_per_session {
     type: number
     sql: 1.0*${count}/${count_of_sessions} ;;
     value_format: "#.0"
   }
 
-  measure: average_events_per_session_without_purchase {
-    type: number
-    sql: 1.0*${count_of_events_from_sessions_without_purchase}/${count_sessions_without_purchase} ;;
-  }
 
   dimension: made_purchase {
     type: yesno
@@ -142,14 +130,6 @@ view: events {
     sql: ${bounce_page} ;;
   }
 
-  measure: count_sessions_without_purchase {
-    type: count_distinct
-    sql: ${session_id} ;;
-    filters: {
-      field: made_purchase
-      value: "No"
-    }
-  }
 
   measure: average_sessions_per_user {
     type: number
@@ -157,9 +137,4 @@ view: events {
     value_format: "#.0"
   }
 
-  measure: average_sessions_per_user_without_purchase {
-    type: number
-    sql: 1.0*${count_sessions_without_purchase}/${users.count} ;;
-    value_format: "#.0"
-  }
 }
