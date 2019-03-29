@@ -118,7 +118,7 @@ view: events {
 
   measure: average_events_per_session {
     type: number
-    sql: 1.0*${count}/${bounce_pages.count} ;;
+    sql: 1.0*${count}/${count_of_sessions} ;;
     value_format: "#.0"
   }
 
