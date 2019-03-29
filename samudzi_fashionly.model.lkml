@@ -11,6 +11,12 @@ datagroup: samudzi_sandbox_default_datagroup {
 persist_with: samudzi_sandbox_default_datagroup
 
 explore: order_items {
+  join: order_patterns {
+    type: left_outer
+    sql_on: ${order_items.id}=${order_patterns.order_id} ;;
+    relationship: one_to_one
+    }
+
   join: users {
     type: left_outer
     sql_on: ${order_items.user_id} = ${users.id} ;;
