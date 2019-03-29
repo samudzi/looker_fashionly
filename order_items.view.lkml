@@ -47,6 +47,7 @@ view: order_items {
     sql: ${TABLE}.inventory_item_id ;;
   }
 
+
   dimension: order_id {
     type: number
     sql: ${TABLE}.order_id ;;
@@ -159,6 +160,11 @@ view: order_items {
       field: status
       value: "Returned"
       }
+    }
+
+    measure: average_count_items_per_sale {
+      type: number
+      sql: ${count}/${users.count} ;;
     }
 
 #need to cast integer values as floats in order to deliver decimal results

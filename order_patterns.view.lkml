@@ -91,6 +91,7 @@ FROM   (SELECT order_items.user_id                          AS user_id,
     type: tier
     tiers: [1,2,3,4,5,6,7,8,9,10]
     style: integer
+    drill_fields: [category,ordered_hour_of_day,product_category]
   }
 
   dimension: order_sequence_number {
@@ -335,6 +336,12 @@ FROM   (SELECT order_items.user_id                          AS user_id,
     drill_fields: [detail*]
     type: percent_of_total
     sql: ${count_customers} ;;
+  }
+
+  measure: item_count_per_order {
+    drill_fields: [detail*]
+    type: number
+    sql: ${count}/${count_orders} ;;
   }
 
   set: detail {
