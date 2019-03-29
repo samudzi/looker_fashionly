@@ -20,9 +20,9 @@ view: products {
       url: "https://www.facebook.com/search/str/{{value}}/keywords_search"
     }
     link: {
-      label: "Drill Dashboard"
-      url: "/dashboards/SuQrBgIHC57ReTha7zEPFf?Brand=={{ _filters['products.brand'] | url_encode }}"
-    }
+    label: "Drill Dashboard"
+    url: "/dashboards/SuQrBgIHC57ReTha7zEPFf?Brand={{ value }}"
+  }
   }
 
   dimension: category {
