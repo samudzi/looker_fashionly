@@ -19,6 +19,10 @@ view: products {
       label: "Brand Facebook Page"
       url: "https://www.facebook.com/search/str/{{value}}/keywords_search"
     }
+    link: {
+      label: "Drill Dashboard"
+      url: "/dashboards/SuQrBgIHC57ReTha7zEPFf?Brand=={{ _filters['products.brand'] | url_encode }}"
+    }
   }
 
   dimension: category {
