@@ -19,6 +19,7 @@ view: order_items {
       year
     ]
     sql: ${TABLE}.created_at ;;
+    drill_fields: [products.brand]
   }
 
   dimension_group: delivered {
