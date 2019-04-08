@@ -49,8 +49,22 @@ view: bsandell {
     sql: ${TABLE}.start_time ;;
   }
 
+  dimension: time_spent_in_pit {
+    type: number
+    sql: diff_seconds(${start_time},${end_time}) ;;
+  }
+
+  measure: average_time_spent_in_pit {
+    type: average
+    sql: ${time_spent_in_pit} ;;
+  }
+
+
+
   measure: count {
     type: count
     drill_fields: []
   }
+
+
 }
